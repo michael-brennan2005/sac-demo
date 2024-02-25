@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hippo</title>
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+<style>
+  :root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  }
+  @supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
+  }
+
+  .main {
+    max-width: 45rem;
+    margin: auto;
+  }
+
+  h3,p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .srd {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 2rem 0;
+    padding-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .srd-paragraph {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .search-box {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    margin-right: 2rem;
+    min-width: 400px;
+  }
+
+  .search-submit-btn {
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #0d6efd;
+    transition: background-color 0.15s ease-in-out 0s;
+    border: 0;
+    color: white;
+  }
+  
+  .search-submit-btn:hover {
+    background-color: #0b6ed7;
+  }
+
+  .search-submit-btn:active {
+    background-color: #0a58ca;
+  }
+  
+  .search-submit-btn-txt {
+    font-size: 1rem;
+  }
+  .srd-points {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .srd-point {
+    font-size: 0.85rem;
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+
+  .bold-txt {
+    font-weight: bold;
+  }
+</style>
