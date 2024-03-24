@@ -75,18 +75,20 @@ const DEFAULT_DATA = [
   }
 ]
 
-interface SearchResult {
-    name: string,
-    description: string,
-    num_members: number,
-    recruitment_cycle: string,
-    recruitment_type: string,
+type SearchResult = Club
+
+interface Club {
+  name: string,
+  description: string,
+  num_members: number,
+  recruitment_cycle: string,
+  recruitment_type: string,
 }
 
 export default function SearchDemo() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<SearchResult[]>(DEFAULT_DATA);
+  const [results, setResults] = useState<SearchResult[]>([]);
 
   useEffect(() => {
     console.log(search)
@@ -106,18 +108,18 @@ export default function SearchDemo() {
             setLoading(true)
 
             const params = new URLSearchParams({
-              query: search,
-              num_results: "10"
+              search: search
             })
 
-            const url = `${BASE_URL}/api/v1/clubs/search?${params.toString()}`
+            const url = `${BASE_URL}/api/v1/clubs/?${params.toString()}`
             fetch(url).then((response) => {
               setLoading(false)
               response.json().then((results: SearchResult[]) => {
                 let newResults: SearchResult[] = []
                 results.forEach((result, index, array) => {
+                  let club = result
                   let recruitment_cycle = ""
-                  switch (result.recruitment_cycle) {
+                  switch (club.recruitment_cycle) {
                     case "always":
                       recruitment_cycle = "Always";
                       break;
@@ -135,7 +137,7 @@ export default function SearchDemo() {
                   }
 
                   let recruitment_type = ""
-                  switch (result.recruitment_type) {
+                  switch (club.recruitment_type) {
                     case "application":
                       recruitment_type = "via Application";
                       break;
@@ -150,12 +152,13 @@ export default function SearchDemo() {
                   }
 
                   newResults.push({
-                    name: result.name,
-                    description: result.description,
-                    num_members: result.num_members,
-                    recruitment_cycle: recruitment_cycle,
-                    recruitment_type: recruitment_type
-                  })
+                    
+                      name: club.name,
+                      description: club.description,
+                      num_members: club.num_members,
+                      recruitment_cycle: recruitment_cycle,
+                      recruitment_type: recruitment_type
+                    })
                 })
                 console.log(newResults)
                 setResults(newResults)
